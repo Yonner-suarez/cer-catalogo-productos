@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34723.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "microCatalagoProductos.API", "microCatalagoProductos.API.csproj", "{25D5489A-A19D-4A02-A775-5FF3BB8E60BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "microCatalogoProductos.Test", "..\microCatalogoProductos.Test\microCatalogoProductos.Test.csproj", "{93739A6F-7675-4849-B562-CF0569A3428B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{25D5489A-A19D-4A02-A775-5FF3BB8E60BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25D5489A-A19D-4A02-A775-5FF3BB8E60BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25D5489A-A19D-4A02-A775-5FF3BB8E60BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25D5489A-A19D-4A02-A775-5FF3BB8E60BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93739A6F-7675-4849-B562-CF0569A3428B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93739A6F-7675-4849-B562-CF0569A3428B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93739A6F-7675-4849-B562-CF0569A3428B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93739A6F-7675-4849-B562-CF0569A3428B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F8774FDA-D568-498A-AA39-D25D02BD4B71}
+	EndGlobalSection
+EndGlobal
