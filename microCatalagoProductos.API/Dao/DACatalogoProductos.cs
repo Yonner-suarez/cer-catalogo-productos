@@ -16,9 +16,9 @@ namespace microCatalagoProductos.API.Dao
 
             using (MySqlConnection conn = new MySqlConnection(Variables.Conexion.cnx))
             {
-                conn.Open();
                 try
                 {
+                    conn.Open();
                     // Base SQL
                     string sql = @"
                         SELECT 
@@ -60,35 +60,37 @@ namespace microCatalagoProductos.API.Dao
 
                     cmd.CommandText = sql;
                     cmd.CommandType = CommandType.Text;
+                    MySqlDataReader reader = cmd.ExecuteReader();
 
-                    using (var reader = cmd.ExecuteReader())
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        var producto = new ObtenerProductosResponse
                         {
-                            var producto = new ObtenerProductosResponse
-                            {
-                                Categoria = reader["Categoria"].ToString(),
-                                Marca = reader["Marca"].ToString(),
-                                Descripcion = reader["NombreProducto"].ToString(),
-                                Precio = reader["Precio"] != DBNull.Value ? Convert.ToDecimal(reader["Precio"]) : 0
-                            };
-                            productosLista.Add(producto);
-                        }
+                            Categoria = reader["Categoria"].ToString(),
+                            Marca = reader["Marca"].ToString(),
+                            Descripcion = reader["NombreProducto"].ToString(),
+                            Precio = reader["Precio"] != DBNull.Value ? Convert.ToDecimal(reader["Precio"]) : 0
+                        };
+                        productosLista.Add(producto);
                     }
+                    
 
                     response.data = productosLista;
                     response.status = 200;
                     response.message = "Productos obtenidos correctamente.";
+                    conn.Close();
                 }
                 catch (Exception ex)
                 {
                     response.data = null;
                     response.message = "Ocurrió un error al traer los productos del catálogo.";
                     response.status = Variables.Resultado.ERROR;
+                    conn.Close();
                     // Opcional: puedes loguear el error con algún logger
                 }
             }
             return response;
+            
         }
 
     }
