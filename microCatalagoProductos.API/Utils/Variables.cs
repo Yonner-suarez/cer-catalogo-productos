@@ -7,15 +7,13 @@
         /// </summary>
         public static string env = "appsettings.json";
         public static int ambiente = int.Parse(new ConfigurationBuilder().AddJsonFile(env).Build().GetSection("AppSettings")["ambiente"]);
+        
 
         public static class Conexion
         {
             //Local
             public static string cnx = new ConfigurationBuilder().AddJsonFile(env).Build().GetSection("AppSettings")["conexion"];
         }
-
-
-
         public static class Token
         {
             public static string PasswordHash = new ConfigurationBuilder().AddJsonFile(env).Build().GetSection("AppSettings").GetSection("Token")["PasswordHash"];
@@ -37,6 +35,11 @@
         //    public static string PRUEBA = new ConfigurationBuilder().AddJsonFile(env).Build().GetSection("AppSettings").GetSection("Smtp")["PRUEBA"];
         //    public static string CORREO_PRUEBA = new ConfigurationBuilder().AddJsonFile(env).Build().GetSection("AppSettings").GetSection("Smtp")["CORREO_PRUEBA"];
         //}
-
+        public static class Resultado
+        {
+            public static int OK = StatusCodes.Status200OK;
+            public static int ERROR = StatusCodes.Status500InternalServerError;
+            public static int NotFound = StatusCodes.Status404NotFound;
+        }
     }
 }
