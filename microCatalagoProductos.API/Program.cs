@@ -12,7 +12,7 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configuración del entorno y variables
+// Configuraciï¿½n del entorno y variables
 var env = builder.Environment;
 var configuration = builder.Configuration;
 
@@ -82,7 +82,7 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo
     {
         Version = "v1",
-        Title = "Microservicio Catálogo de Productos"
+        Title = "Microservicio Catï¿½logo de Productos"
     });
 });
 
@@ -100,7 +100,7 @@ if (app.Environment.IsDevelopment())
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1.0.0");
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1.0.1");
 });
 
 app.UseRouting();
