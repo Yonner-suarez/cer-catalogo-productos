@@ -11,5 +11,15 @@ namespace microCatalagoProductos.API.Logic
             var res = DACatalogoProductos.ObtenerProductos(request);
             return res;
         }
+        public static GeneralResponse ObtenerMarcas()
+        {
+            var res = DACatalogoProductos.ObtenerMarcas();
+            return res;
+        }
+        public static GeneralResponse ObtenerCategorias()
+        {
+            var res = DACatalogoProductos.ObtenerCategorias();
+            return res;
+        }
     }
 }

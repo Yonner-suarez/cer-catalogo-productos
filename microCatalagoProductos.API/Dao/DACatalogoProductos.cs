@@ -98,8 +98,10 @@ namespace microCatalagoProductos.API.Dao
                                 Nombre = reader["cer_varchar_nombre"]?.ToString() ?? string.Empty,
                                 Descripcion = reader["cer_text_descripcion"]?.ToString() ?? string.Empty,
                                 Precio = Convert.ToDecimal(reader["cer_decimal_precio"]),
-                                Cantidad = Convert.ToInt32(reader["cer_int_stock"]),
-                                Image = reader["cer_blob_imagen"] != DBNull.Value ? (byte[])reader["cer_blob_imagen"] : null
+                                CantidadReal = Convert.ToInt32(reader["cer_int_stock"]),
+                                Image = reader["cer_blob_imagen"] != DBNull.Value ? (byte[])reader["cer_blob_imagen"] : null,
+                                IdProducto = Convert.ToInt32(reader["cer_int_id_producto"]),
+
                             };
 
                             listaProductos.Add(producto);
@@ -124,6 +126,113 @@ namespace microCatalagoProductos.API.Dao
 
             return response;
         }
+        public static GeneralResponse ObtenerMarcas()
+        {
+            var response = new GeneralResponse();
+            var listaMarcas = new List<Marca>();
+
+            using (MySqlConnection conn = new MySqlConnection(Variables.Conexion.cnx))
+            {
+                try
+                {
+                    conn.Open();
+
+                    string sqlSelect = @"
+                                     SELECT 
+                                        cer_int_id_marca AS IdMarca,
+                                        cer_enum_nombre AS Nombre
+                                    FROM tbl_cer_marca
+                                    WHERE cer_tinyint_estado = 1;
+                                                ";
+
+                    var cmd = new MySqlCommand(sqlSelect, conn);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var marca = new Marca
+                            {
+                                IdMarca = Convert.ToInt32(reader["IdMarca"]),
+                                Nombre = reader["Nombre"]?.ToString() ?? string.Empty
+                            };
+
+                            listaMarcas.Add(marca);
+                        }
+                    }
+
+                    response.status = Variables.Response.OK;
+                    response.message = listaMarcas.Count > 0 ? "Marcas obtenidas correctamente." : "No se encontraron marcas.";
+                    response.data = listaMarcas;
+                }
+                catch (Exception ex)
+                {
+                    response.status = Variables.Response.ERROR;
+                    response.message = "Error al obtener marcas: " + ex.Message;
+                    response.data = null;
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+
+            return response;
+        }
+        public static GeneralResponse ObtenerCategorias()
+        {
+            var response = new GeneralResponse();
+            var listaCategorias = new List<Categoria>();
+
+            using (MySqlConnection conn = new MySqlConnection(Variables.Conexion.cnx))
+            {
+                try
+                {
+                    conn.Open();
+
+                    string sqlSelect = @"
+                                       SELECT 
+                                            cer_int_id_categoria AS IdCategoria,
+                                            cer_enum_nombre AS Nombre
+                                        FROM tbl_cer_categoria
+                                        WHERE cer_tinyint_estado = 1;
+                                    ";
+
+                    var cmd = new MySqlCommand(sqlSelect, conn);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var categoria = new Categoria
+                            {
+                                IdCategoria = Convert.ToInt32(reader["IdCategoria"]),
+                                Nombre = reader["Nombre"]?.ToString() ?? string.Empty
+                            };
+
+                            listaCategorias.Add(categoria);
+                        }
+                    }
+
+                    response.status = Variables.Response.OK;
+                    response.message = listaCategorias.Count > 0 ? "Categorías obtenidas correctamente." : "No se encontraron categorías.";
+                    response.data = listaCategorias;
+                }
+                catch (Exception ex)
+                {
+                    response.status = Variables.Response.ERROR;
+                    response.message = "Error al obtener categorías: " + ex.Message;
+                    response.data = null;
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+
+            return response;
+        }
+
 
     }
 }

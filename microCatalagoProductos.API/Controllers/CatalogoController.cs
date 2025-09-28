@@ -26,5 +26,33 @@ namespace microCatalagoProductos.API.Controllers
                 return StatusCode(res.status, res);
             }
         }
+        [HttpGet]
+        [Route("[action]")]
+        public ActionResult marcas()
+        {
+            GeneralResponse res = BLCatalogoProductos.ObtenerMarcas();
+            if (res.status == Variables.Response.OK)
+            {
+                return Ok(res);
+            }
+            else
+            {
+                return StatusCode(res.status, res);
+            }
+        }
+        [HttpGet]
+        [Route("[action]")]
+        public ActionResult categorias()
+        {
+            GeneralResponse res = BLCatalogoProductos.ObtenerCategorias();
+            if (res.status == Variables.Response.OK)
+            {
+                return Ok(res);
+            }
+            else
+            {
+                return StatusCode(res.status, res);
+            }
+        }
     }
 }
