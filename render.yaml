@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: micro-inventario
+    env: docker
+    plan: free
+    region: oregon
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: PROJECT_PATH
+        value: microCatalagoProductos.API
+      - key: PROJECT_DLL
+        value: microCatalagoProductos.API.dll
