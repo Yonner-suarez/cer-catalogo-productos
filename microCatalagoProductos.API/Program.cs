@@ -57,7 +57,7 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 });
 
 // JWT Authentication
-var key = Encoding.ASCII.GetBytes(Variables.Token.Bearer);
+var key = Encoding.ASCII.GetBytes(Variables.Token.Llave);
 builder.Services.AddAuthentication(x =>
 {
     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
