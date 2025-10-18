@@ -55,6 +55,12 @@ namespace microCatalagoProductos.API.Dao
                         cmd.Parameters.AddWithValue("@IdCategoria", req.IdCategoria);
                     }
 
+                    if (!string.IsNullOrEmpty(req.Busqueda))
+                    {
+                        filtros.Add("p.cer_text_descripcion LIKE @Busqueda");
+                        cmd.Parameters.AddWithValue("@Busqueda", "%" + req.Busqueda + "%");
+                    }
+
                     if (!string.IsNullOrEmpty(req.RangoPrecio))
                     {
                         switch (req.RangoPrecio)

@@ -6,6 +6,7 @@
 
         public int IdCategoria { get; set; }
         public string RangoPrecio { get; set; }
+        public string Busqueda { get; set; }
 
 
     }

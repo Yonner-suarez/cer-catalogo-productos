@@ -16,7 +16,7 @@ namespace microCatalagoProductos.API.Controllers
         [Route("[action]")]
         public ActionResult productos(ProductosRequest filtros)
         {
-            GeneralResponse res = BLCatalogoProductos.ObtenerProductos(filtros);
+             GeneralResponse res = BLCatalogoProductos.ObtenerProductos(filtros);
             if (res.status == Variables.Response.OK)
             {
                 return Ok(res);
