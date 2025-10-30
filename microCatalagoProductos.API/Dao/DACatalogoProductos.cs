@@ -31,7 +31,8 @@ namespace microCatalagoProductos.API.Dao
                                             p.cer_text_descripcion,
                                             p.cer_decimal_precio,
                                             p.cer_int_stock,
-                                            p.cer_blob_imagen
+                                            p.cer_blob_imagen,
+                                            p.cer_decimal_peso
                                         FROM tbl_cer_producto p
                                         INNER JOIN tbl_cer_marca m ON p.cer_int_id_marca = m.cer_int_id_marca
                                         INNER JOIN tbl_cer_categoria c ON p.cer_int_id_categoria = c.cer_int_id_categoria
@@ -107,6 +108,7 @@ namespace microCatalagoProductos.API.Dao
                                 CantidadReal = Convert.ToInt32(reader["cer_int_stock"]),
                                 Image = reader["cer_blob_imagen"] != DBNull.Value ? (byte[])reader["cer_blob_imagen"] : null,
                                 IdProducto = Convert.ToInt32(reader["cer_int_id_producto"]),
+                                Peso = Convert.ToInt32(reader["cer_decimal_peso"])
 
                             };
 
